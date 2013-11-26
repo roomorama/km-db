@@ -84,7 +84,7 @@ module KMDB
       begin
         data = JSON.parse(text)
       rescue JSON::ParserError => e
-        log "Warning, JSON parse error in: #{text}"
+        log "Warning, JSON parse error in: #{text} - #{e.message}"
         raise e if @abort_on_error
         return
       end
