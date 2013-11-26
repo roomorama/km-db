@@ -8,11 +8,11 @@ require 'active_record'
 
 module KMDB
   class SetupEventsDatabase < ActiveRecord::Migration
-    def self.connection
+    def connection
       CustomRecord.connection
     end
 
-    def self.up
+    def up
       create_table :events do |t|
         t.integer  :user_id
         t.integer  :n
@@ -53,7 +53,7 @@ module KMDB
 
     end
 
-    def self.down
+    def down
       drop_table :events
       drop_table :properties
       drop_table :users
