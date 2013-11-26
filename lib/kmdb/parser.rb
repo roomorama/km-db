@@ -1,4 +1,4 @@
-require 'yajl/json_gem'
+require 'multi_json'
 require 'pathname'
 require 'progressbar'
 require 'pstore'
@@ -82,8 +82,8 @@ module KMDB
       end
 
       begin
-        data = JSON.parse(text)
-      rescue JSON::ParserError => e
+        data = MultiJson.load(text)
+      rescue MultiJson::LoadError => e
         log "Warning, JSON parse error in: #{text} - #{e.message}"
         raise e if @abort_on_error
         return
