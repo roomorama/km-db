@@ -83,8 +83,12 @@ module KMDB
 
       begin
         data = MultiJson.load(text)
-      rescue MultiJson::LoadError, Encoding::CompatibilityError => e
+      rescue MultiJson::LoadError  => e
         log "Warning, JSON parse error in: #{text} - #{e.message}"
+        raise e if @abort_on_error
+        return
+      rescue Encoding::CompatibilityError => e
+        log "Warning, JSON parse encoding error - #{e.message}"
         raise e if @abort_on_error
         return
       end
