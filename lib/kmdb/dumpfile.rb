@@ -2,7 +2,7 @@ require 'kmdb/custom_record'
 
 module KMDB
   class Dumpfile < CustomRecord
-    self.table_name = "dumpfiles"
+    CustomRecord.table_name = "dumpfiles"
 
     validates_presence_of :offset
     validates_presence_of :path
