@@ -45,8 +45,8 @@ module KMDB
       end
       establish_connection(config)
 
-      unless connection.table_exists?('events')
-        SetupEventsDatabase.up
+      unless connection.table_exists?('events') && connection.table_exists?('dumpfiles')
+        SetupEventsDatabase.new.up
         self.reset_column_information
       end
     end
