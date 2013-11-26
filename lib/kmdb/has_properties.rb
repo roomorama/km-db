@@ -12,7 +12,7 @@ module KMDB
       mod.class_eval do
         has_many   :properties, :class_name => 'KMDB::Property'
 
-        named_scope :with_properties, lambda { |*props|
+        scope :with_properties, lambda { |*props|
           direction = props.delete(:exclude_missing) ? 'INNER' : 'LEFT'
           prop_table = Property.table_name
           selects = ["`#{table_name}`.*"]
