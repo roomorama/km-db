@@ -49,7 +49,7 @@ module KMDB
   private
 
     def self.get_uncached(string)
-      string.size <= MaxStringSize or raise "String is too long"
+      #string.size <= MaxStringSize or raise "String is too long"
       find_or_create(:string => string).id
     end
   end
