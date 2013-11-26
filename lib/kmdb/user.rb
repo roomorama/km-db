@@ -4,7 +4,7 @@ module KMDB
   class User < CustomRecord
     include HasProperties
 
-    set_table_name "users"
+    self.table_name = "users"
 
     has_many :events,     :class_name => 'KMDB::Event'
     belongs_to :alias,    :class_name => 'KMDB::User' 
@@ -13,9 +13,9 @@ module KMDB
     validates_presence_of   :name
     validates_uniqueness_of :name
 
-    named_scope :named, lambda { |name| { :conditions => { :name => name } } }
+    scope :named, lambda { |name| { :conditions => { :name => name } } }
 
-    named_scope :duplicates, lambda {{
+    scope :duplicates, lambda {{
       :select => "id, COUNT(id) AS quantity", :group => :name, :having => "quantity > 1"
     }}
 
