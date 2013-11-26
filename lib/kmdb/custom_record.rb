@@ -15,6 +15,7 @@ require 'kmdb/migration'
 
 module KMDB
   class CustomRecord < ActiveRecord::Base
+    self.abstract_class = true
     DefaultConfig = {
       'adapter'  => 'sqlite3',
       'database' => "test.db"
